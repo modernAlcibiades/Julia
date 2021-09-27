@@ -2,6 +2,7 @@ node_modules
 .idea
 .env
 config.js
+sketch-julia.js
 
 #Hardhat files
 cache
