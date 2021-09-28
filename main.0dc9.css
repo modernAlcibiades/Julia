@@ -106,6 +106,13 @@ h5 {
   width:80%;
 }
 
+.mint-wrapper {
+  margin: auto;
+  justify-content: space-around;
+  width: 100%;
+}
+
+
 
 .inputs-wrapper {
     text-align: center;
@@ -360,4 +367,4 @@ fieldset:disabled a.btn {
 
 
 
-/*# sourceMappingURL=main.7535.css.map*/
+/*# sourceMappingURL=main.0dc9.css.map*/
