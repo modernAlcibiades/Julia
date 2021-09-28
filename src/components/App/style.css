@@ -30,7 +30,7 @@
 }
 
 .app-content {
-    max-width: 1024px;
+    width: 100%;
     display: 'flex';
     align-items: 'center';
     justify-content : 'center';
@@ -65,11 +65,16 @@ h5 {
     margin: 0;
     padding: 0;
 }
+.logo {
+  font-family: sans-serif;
+  width: 10%;
+  text-align: left;
+}
 
 .title {
     font-family: sans-serif;
-    align-items: center;
-    text-align: center;
+    margin: auto;
+    width: 50%;
     margin-bottom: 2em;
 }
 
@@ -95,13 +100,23 @@ h5 {
     width: 100%;
 }
 
+.wrapper {
+  margin: auto;
+  justify-content: space-around;
+  width:80%;
+}
+
+
 .inputs-wrapper {
     text-align: center;
+    margin-top: 2em;
+    margin-left: 2em;
 }
 
 span {
     margin-left: 10px;
 }
+
 
 .success-message {
     text-align: center;

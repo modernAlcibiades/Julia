@@ -27,7 +27,14 @@ const JuliaDisplay =()=> {
         successMessage
     } = useContext(AppStateContext)
 
-    useEffect(() => { 
+    const redraw = () => {
+        dispatch({
+            type: 'SET_VALUE',
+            payload: {
+                key: 'refresh',
+                value: true,
+            },
+        });
         let _hash = '0x';
         for (let i = 0; i < 32; i++) {
             const val = Math.floor(Math.random() * 16);
@@ -42,6 +49,11 @@ const JuliaDisplay =()=> {
                 value: _hash,
             },
         });
+
+    }
+
+    useEffect(() => {
+        redraw();
     }, [])
 
     return (
@@ -51,27 +63,7 @@ const JuliaDisplay =()=> {
                     className="btn btn-warning"
                     type="button"
                     onClick={() => {
-                        dispatch({
-                            type: 'SET_VALUE',
-                            payload: {
-                                key: 'refresh',
-                                value: true,
-                            },
-                        });
-                        let _hash = '0x';
-                        for (let i = 0; i < 32; i++) {
-                            const val = Math.floor(Math.random() * 16);
-                            _hash = _hash + val.toString(16);
-                        }
-                        console.log(_hash);
-                        
-                        dispatch({
-                            type: 'SET_VALUE',
-                            payload: {
-                                key: 'hash',
-                                value: _hash,
-                            },
-                        });
+                        redraw();
                     } }>
                     Generate New
                 </button>

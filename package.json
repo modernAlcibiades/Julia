@@ -1,5 +1,5 @@
 {
-  "homepage":"https://modernalcibiades.github.io/Julia/",
+  "homepage": "https://modernalcibiades.github.io/Julia/",
   "name": "julia-nft",
   "version": "0.0.1",
   "private": true,
@@ -35,7 +35,10 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-hot-loader": "^4.8.4",
-    "shortid": "^2.2.14"
+    "react-icons": "^4.2.0",
+    "react-router-dom": "^5.3.0",
+    "shortid": "^2.2.14",
+    "styled-components": "^5.3.1"
   },
   "devDependencies": {
     "@babel/core": "^7.4.3",
