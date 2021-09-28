@@ -8,9 +8,7 @@ const P5Wrapper = p5Wrapper(generate())
 export default function ConnectWallet() {
     const dispatch = useContext(AppDispatchContext)
     const {
-        address,
-        refresh,
-        slider
+        address
     } = useContext(AppStateContext)
 
     return (
