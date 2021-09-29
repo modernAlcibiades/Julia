@@ -21,5 +21,6 @@ export default {
     bgndColor: '#ddd',
     // playAudio: false,
     errorMessage: "",
-    successMessage: ""
+    successMessage: "",
+    dim:1024
 }

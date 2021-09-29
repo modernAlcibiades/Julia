@@ -14,7 +14,7 @@ export default function AppContent() {
                 <Router >
                     <Navbar />
                     <Switch>
-                        <Route path={prefix} exact component={About} />
+                        <Route path={prefix} exact component={JuliaDisplay} />
                         <Route path={prefix + 'about'} component={About} />
                         <Route path={prefix + 'mint'} component={JuliaDisplay} />
                         <Route path={prefix + 'dashboard'} component={Dashboard} />
