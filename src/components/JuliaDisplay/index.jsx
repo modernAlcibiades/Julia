@@ -145,8 +145,9 @@ const JuliaDisplay =()=> {
                             let metadata;
                             try {
                                 metadata = await ns_client.store({
-                                    name: `julia_${hash}`,
-                                    description: 'Julia',
+                                    name: `Julia`,
+                                    seed: `${hash}`,
+                                    description: `julia_${hash}`,
                                     image: blob
                                 });
                                 dispatch(
@@ -175,14 +176,20 @@ const JuliaDisplay =()=> {
 
                             // Connect to metamask and create nft
                             try {
-                                // make sure correct contract
-                                console.log(parseInt(await contract.current_supply()));
-
                                 // mint new nft
                                 const txn = await contract.connect(provider.getSigner(0)).mintOne(
                                     address, token_uri, { value: ethers.utils.parseEther("10.0") });
                                 const receipt = await txn.wait();
                                 console.log(receipt.events);
+                                
+                                const mint = parseInt(await contract.current_supply());
+                                dispatch({
+                                    type: 'SET_VALUE',
+                                    payload: {
+                                        key: 'minted',
+                                        value: mint,
+                                    },
+                                });
 
                                 dispatch(
                                     {

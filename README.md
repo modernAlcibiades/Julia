@@ -12,23 +12,30 @@ Once all the Julia NFTs are generated, the code will be immortalized on blockcha
 ## Tasks
 
 ### TODO
-- Display minted so far
-- Add information to TokenURI
+- Build and add roadmap to About
 - Firebase website
-- Change contract before it is too late
+- Evaluate if contract needs to be updated
+- Add information to TokenURI
 - Twitter feed to discord announcements
-- Reveal committed code transaction
+- Reveal committed code transaction hash
 - Dashboard to show minted NFTs
-- Connect before processing
   
 ### Done
-- Fixed display issue during tab switching
+(v0.2)
+- Added seed to TokenURI (will generate any others later)
+- Display mint status
+- Event triggers for wallet events
+- Fixed sketch resizing bug
+(v0.1)
+- Connect button for metamask
+- Fixed display issue during tab switching (HashRouter)
+- UI improvement, Nav bar added, split into tabs 
 - Enabled screen adaptive display
+(v0.0)
+- Test live
+- Basic UI 
 - Embed display in the web app
 - Test IPFS upload
 - Create NFT contract
 - Add ipfs upload and contract interaction to the app
-- Test live
-- Improve UI
-
 
