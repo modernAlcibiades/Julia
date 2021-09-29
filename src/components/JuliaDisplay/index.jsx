@@ -25,7 +25,8 @@ const JuliaDisplay =()=> {
         refresh,
         hash,
         errorMessage,
-        successMessage
+        successMessage,
+        minted
     } = useContext(AppStateContext)
 
     const redraw = () => {
@@ -94,7 +95,6 @@ const JuliaDisplay =()=> {
                         value: mint,
                     },
                 });
-
             } else {
                 dispatch({
                     type: 'SET_VALUE',
@@ -236,7 +236,7 @@ const JuliaDisplay =()=> {
             </div>
             <br />
             <div className="info-message">
-                <h5>Sketch for seed {hash}</h5>
+                <h5>Seed : {hash}</h5>
             </div>
             <div className="section section-content">
                 {(
@@ -247,6 +247,9 @@ const JuliaDisplay =()=> {
                         state={{ hash, refresh}}
                     />
                 )}
+            </div>
+            <div className="info-message">
+                <h4>Mint Status : {minted} / 1000</h4>
             </div>
             <br />
         </div>
