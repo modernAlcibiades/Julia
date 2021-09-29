@@ -13,6 +13,7 @@ export default {
     
     // contract
     contract_address: "0xc45c766C9D0639654590F16486C936b97eCd714D",
+    contract:undefined,
     FTMSCAN_API_KEY: undefined,
     
     // Generator

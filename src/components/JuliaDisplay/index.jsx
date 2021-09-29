@@ -17,9 +17,9 @@ const JuliaDisplay =()=> {
     const dispatch = useContext(AppDispatchContext)
     const {
         contract_address,
+        address,
         provider,
         ns_client,
-        metadata,
         canvas,
         refresh,
         hash,
@@ -57,6 +57,8 @@ const JuliaDisplay =()=> {
         //const new_dim = Math.floor((window.innerWidth > window.innerHeight ? window.innerHeight : window.innerWidth) * 0.8);
         const new_dim = Math.floor((screen.width > screen.height ? screen.height : screen.width) * 0.8);
         console.log("Sketch dimension", new_dim);
+
+        // Set Dimension
         dispatch({
             type: 'SET_VALUE',
             payload: {
@@ -64,6 +66,7 @@ const JuliaDisplay =()=> {
                 value: new_dim,
             },
         });
+        // Clear Canvas
         dispatch({
             type: 'SET_VALUE',
             payload: {
@@ -71,6 +74,8 @@ const JuliaDisplay =()=> {
                 value: undefined,
             },
         });
+
+        // Redraw on canvas
         redraw();
     }, [])
 
@@ -90,7 +95,25 @@ const JuliaDisplay =()=> {
                     type="button"
                     className="btn btn-warning"
                     onClick={async () => {
+                        if (provider === undefined || address === undefined ) {
+                            dispatch(
+                                {
+                                    type: 'SET_ERROR',
+                                    payload: {
+                                        value: "Please connect your wallet before minting",
+                                    },
+                                });
+                            return;
+                        }
+
                         const bl = await canvas.toBlob(async function (blob) {// get content as blob
+                            dispatch(
+                                {
+                                    type: 'SET_SUCCESS',
+                                    payload: {
+                                        value: `Minting. Please wait...`,
+                                    },
+                                });
                             let metadata;
                             try {
                                 metadata = await ns_client.store({
@@ -124,65 +147,57 @@ const JuliaDisplay =()=> {
 
                             // Connect to metamask and create nft
                             try {
-                                const ethereum = window.ethereum;
-                            
-                                if (ethereum.networkVersion === `250`) {
-                                    const provider = new ethers.providers.Web3Provider(ethereum);
-                                    const [signer_address] = await ethereum.request({ method: 'eth_requestAccounts' });
-                                    console.log(signer_address);
+                                // Initialize contract
+                                const contract = new ethers.Contract(
+                                    contract_address,
+                                    Julia.abi,
+                                    provider.getSigner(0));
+                                // make sure correct contract
+                                console.log(parseInt(await contract.current_supply()));
 
-                                    // Contract interactions
-                                    const contract = new ethers.Contract(
-                                        contract_address,
-                                        Julia.abi,
-                                        provider.getSigner(0));
-                                    
-                                    // make sure correct contract
-                                    console.log(parseInt(await contract.current_supply()));
+                                // mint new nft
+                                const txn = await contract.mintOne(address, token_uri, { value: ethers.utils.parseEther("10.0") });
+                                const receipt = await txn.wait();
+                                console.log(receipt.events);
 
-                                    // mint new nft
-                                    const txn = await contract.mintOne(signer_address, token_uri, { value: ethers.utils.parseEther("10.0") });
-                                    const receipt = await txn.wait();
-                                    console.log(receipt.events);
-
-                                    dispatch(
-                                        {
-                                            type: 'SET_ERROR',
-                                            payload: {
-                                                value: "",
-                                            },
-                                        });
-                                    dispatch(
-                                        {
-                                            type: 'SET_SUCCESS',
-                                            payload: {
-                                                value: `Successful Mint : ${hash}`,
-                                            },
-                                        });
-                                } else {
-                                    console.log("Wrong network! Connect to fantom")
-                                    dispatch(
-                                        {
-                                            type: 'SET_ERROR',
-                                            payload: {
-                                                value: "Connect to Fantom Network on Metamask!!!",
-                                            },
-                                        });
-                                    return;
-                                }
+                                dispatch(
+                                    {
+                                        type: 'SET_ERROR',
+                                        payload: {
+                                            value: "",
+                                        },
+                                    });
+                                dispatch(
+                                    {
+                                        type: 'SET_SUCCESS',
+                                        payload: {
+                                            value: `Successful Mint : ${hash}`,
+                                        },
+                                    });
                             } catch (e) {
                                 console.log(e);
-                                dispatch(
-                                {
-                                    type: 'SET_ERROR',
-                                    payload: {
-                                        key: 'errorMessage',
-                                        value: e.data.message,
-                                    },
-                                });
+                                try {
+                                    dispatch(
+                                    {
+                                        type: 'SET_ERROR',
+                                        payload: {
+                                            value: e.data.message,
+                                        },
+                                    });        
+                                } catch (e2) {
+                                    console.log(e2);
+                                    dispatch(
+                                    {
+                                        type: 'SET_ERROR',
+                                        payload: {
+                                            value: e.message,
+                                        },
+                                    });
+                                }
+    
                             }
-                            
-                        }, "image/jpg", 1.0);                    }
+                        }, "image/jpg", 1.0);
+                    }
                         
                     }>
                     Mint NFT
@@ -196,7 +211,9 @@ const JuliaDisplay =()=> {
                 <label>{successMessage}</label>
             </div>
             <br />
-            <h5>Sketch for seed {hash}</h5>
+            <div className="info-message">
+                <h5>Sketch for seed {hash}</h5>
+            </div>
             <div className="section section-content">
                 {(
                     <P5Wrapper
@@ -213,26 +230,3 @@ const JuliaDisplay =()=> {
 }
 
 export default JuliaDisplay;
-
-/*
-                        console.log(canvas);
-                        let imageData = canvas.toDataURL('image/png');
-                        console.log(imageData);
-
-                        const metadata = await ns_client.store({
-                            name: `julia_${hash}`,
-                            description: 'Julia',
-                            image: new File([imageData], `julia_${hash}.png`, { type: 'image/png' })
-                        });
-                        dispatch(
-                            {
-                                type: 'SET_VALUE',
-                                payload: {
-                                    key: 'metadata',
-                                    value: metadata,
-                                },
-                            }
-                        );
-                        console.log(metadata.url);
-                        console.log(bl);
-                        */

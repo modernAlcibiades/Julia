@@ -4,9 +4,10 @@ import {
   NavLink,
   Bars,
   NavMenu,
-  NavBtn,
-  NavBtnLink
+  NavBtn
 } from './NavbarElements';
+
+import ConnectWallet from '../ConnectWallet';
 
 const Navbar = () => {
   return (
@@ -33,11 +34,10 @@ const Navbar = () => {
           {/* Second Nav */}
           {/* <NavBtnLink to='/sign-in'>Sign In</NavBtnLink> */}
         </NavMenu>
-        {/* {
+        
           <NavBtn>
-            <NavBtnLink to='/signin'>Connect Wallet</NavBtnLink>
+            <ConnectWallet/>
           </NavBtn>
-        } */}
       </Nav>
     </>
   );

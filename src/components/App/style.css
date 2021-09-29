@@ -61,14 +61,12 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
   display: block;
 }
 
-h5 {
-    margin: 0;
-    padding: 0;
-}
 .logo {
   font-family: sans-serif;
-  width: 10%;
   text-align: left;
+  margin-left: 24px;
+  width:10%;
+
 }
 
 .title {
@@ -87,13 +85,13 @@ h5 {
     padding: 8px;
     border: 1px dashed lightgray;
     border-radius: 4px;
-    align-self: center;
-
+    align-items: center;
 }
 
 .section-content {
     display: flex;
     justify-content: space-around;
+    align-items: center;
 }
 
 .slider {
@@ -112,6 +110,15 @@ h5 {
   width: 100%;
 }
 
+.p5wrapper {
+  margin: auto;
+  justify-content: space-around;
+}
+
+.connect-wrapper {
+  margin: auto;
+  width: 300px;
+}
 
 
 .inputs-wrapper {
@@ -124,14 +131,19 @@ span {
     margin-left: 10px;
 }
 
-
 .success-message {
     text-align: center;
     color: green;
+    height: 10px;
 }
 .error-message {
   text-align: center;
   color: red;
+  height: 10px;
+}
+.info-message {
+  text-align: center;
+  color: black;
 }
 
 

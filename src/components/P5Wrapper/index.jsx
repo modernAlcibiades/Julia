@@ -28,7 +28,7 @@ export default function (id = generate()) {
         }, [dispatch, sketch, state])
 
         return (
-            <div ref={sketchContainer} className="wrapper">
+            <div ref={sketchContainer} className="p5wrapper">
                 
             </div>
         )
