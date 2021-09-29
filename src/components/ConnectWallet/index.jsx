@@ -34,8 +34,6 @@ export default function ConnectWallet() {
     
     const toggle_connect = async () => {
         // Connect wallet
-        console.log(address);
-        console.log(provider);
         if (address === undefined || provider === undefined) {
             try {
                 const ethereum = window.ethereum;
