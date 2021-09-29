@@ -12,7 +12,8 @@ Once all the Julia NFTs are generated, the code will be immortalized on blockcha
 ## Tasks
 
 ### TODO
-- Improve UI
+- Display minted so far
+- Add information to TokenURI
 - Reveal committed code transaction
   
 ### Done
@@ -21,5 +22,6 @@ Once all the Julia NFTs are generated, the code will be immortalized on blockcha
 - Create NFT contract
 - Add ipfs upload and contract interaction to the app
 - Test live
-- Spread the word
+- Improve UI
+
 

@@ -24,7 +24,8 @@ const JuliaDisplay =()=> {
         refresh,
         hash,
         errorMessage,
-        successMessage
+        successMessage,
+        dim
     } = useContext(AppStateContext)
 
     const redraw = () => {
@@ -40,7 +41,7 @@ const JuliaDisplay =()=> {
             const val = Math.floor(Math.random() * 16);
             _hash = _hash + val.toString(16);
         }
-        console.log(_hash);
+        console.log("Seed", _hash);
         
         dispatch({
             type: 'SET_VALUE',
@@ -53,11 +54,28 @@ const JuliaDisplay =()=> {
     }
 
     useEffect(() => {
+        //const new_dim = Math.floor((window.innerWidth > window.innerHeight ? window.innerHeight : window.innerWidth) * 0.8);
+        const new_dim = Math.floor((screen.width > screen.height ? screen.height : screen.width) * 0.8);
+        console.log("Sketch dimension", new_dim);
+        dispatch({
+            type: 'SET_VALUE',
+            payload: {
+                key: 'dim',
+                value: new_dim,
+            },
+        });
+        dispatch({
+            type: 'SET_VALUE',
+            payload: {
+                key: 'canvas',
+                value: undefined,
+            },
+        });
         redraw();
     }, [])
 
     return (
-        <div className="wrapper">
+        <div className="mint-wrapper">
             <div className="inputs-wrapper">
                 <button
                     className="btn btn-warning"
@@ -164,9 +182,7 @@ const JuliaDisplay =()=> {
                                 });
                             }
                             
-                        }, "image/jpg", 1.0);
-                        console.log(bl);
-                    }
+                        }, "image/jpg", 1.0);                    }
                         
                     }>
                     Mint NFT
@@ -187,7 +203,7 @@ const JuliaDisplay =()=> {
                         id="p5wrap"
                         dispatch={dispatch}
                         sketch={sketchJulia}
-                        state={{ hash, refresh, canvas }}
+                        state={{ hash, refresh, canvas, dim }}
                     />
                 )}
             </div>
