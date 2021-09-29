@@ -1,6 +1,23 @@
-import React from 'react'
+import React, { useContext, useEffect,  useState } from 'react';
+import { ethers } from 'ethers';
+
+import { AppDispatchContext, AppStateContext } from '../App/AppStateProvider';
 
 export default function About() {
+    const dispatch = useContext(AppDispatchContext);
+    const {
+        minted
+    } = useContext(AppStateContext);
+
+    // useEffect(async () => {
+    //     console.log("Contract", contract);
+    //     if (contract !== undefined) {
+    //         const mint = parseInt(await contract.current_supply());
+    //         console.log("Minted", mint);
+    //         //setMinted(mint);
+    //     } 
+    // }, [contract]);
+
     return (
         <>
             <div className="wrapper">
@@ -18,7 +35,7 @@ export default function About() {
                 <p>This is the first in a series of generative fractal NFTs that I have planned. There is a limit of 3 NFTs per address. Click on 'Generate New' until you find what you like, then click 'Mint'. You'll see a success message in green if the transaction goes through.</p>
                     <ul>
                     <li>Contract Address : 0xc45c766C9D0639654590F16486C936b97eCd714D</li>
-                    <li>Max Supply : 1000</li>
+                    <li>Minted : {minted}/1000</li>
                     <li>Price : 10 FTM</li>
                     <li>Max mints per address : 3</li>
                     </ul>

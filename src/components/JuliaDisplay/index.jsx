@@ -16,16 +16,16 @@ const P5Wrapper = p5Wrapper(generate())
 const JuliaDisplay =()=> {
     const dispatch = useContext(AppDispatchContext)
     const {
+        contract,
         contract_address,
         address,
         provider,
         ns_client,
-        canvas,
+        blobd,
         refresh,
         hash,
         errorMessage,
-        successMessage,
-        dim
+        successMessage
     } = useContext(AppStateContext)
 
     const redraw = () => {
@@ -50,34 +50,62 @@ const JuliaDisplay =()=> {
                 value: _hash,
             },
         });
-
     }
 
     useEffect(() => {
-        //const new_dim = Math.floor((window.innerWidth > window.innerHeight ? window.innerHeight : window.innerWidth) * 0.8);
-        const new_dim = Math.floor((screen.width > screen.height ? screen.height : screen.width) * 0.8);
-        console.log("Sketch dimension", new_dim);
-
-        // Set Dimension
-        dispatch({
-            type: 'SET_VALUE',
-            payload: {
-                key: 'dim',
-                value: new_dim,
-            },
-        });
         // Clear Canvas
         dispatch({
             type: 'SET_VALUE',
             payload: {
-                key: 'canvas',
+                key: 'blobd',
                 value: undefined,
             },
         });
 
         // Redraw on canvas
         redraw();
-    }, [])
+    }, []);
+
+    useEffect(() => {
+        (async () => {
+            console.log("Provider", provider);
+            // Initialize contract
+            if (provider !== undefined) {
+                const cnt = new ethers.Contract(
+                    contract_address,
+                    Julia.abi,
+                    provider);
+            
+                dispatch({
+                    type: 'SET_VALUE',
+                    payload: {
+                        key: 'contract',
+                        value: cnt,
+                    },
+                });
+        
+                const mint = parseInt(await cnt.current_supply());
+                console.log("Minted", mint);
+
+                dispatch({
+                    type: 'SET_VALUE',
+                    payload: {
+                        key: 'minted',
+                        value: mint,
+                    },
+                });
+
+            } else {
+                dispatch({
+                    type: 'SET_VALUE',
+                    payload: {
+                        key: 'contract',
+                        value: undefined,
+                    },
+                });
+            }
+        })();
+    }, [provider]);
 
     return (
         <div className="mint-wrapper">
@@ -106,7 +134,7 @@ const JuliaDisplay =()=> {
                             return;
                         }
 
-                        const bl = await canvas.toBlob(async function (blob) {// get content as blob
+                        const bl = await blobd.toBlob(async function (blob) {// get content as blob
                             dispatch(
                                 {
                                     type: 'SET_SUCCESS',
@@ -147,16 +175,12 @@ const JuliaDisplay =()=> {
 
                             // Connect to metamask and create nft
                             try {
-                                // Initialize contract
-                                const contract = new ethers.Contract(
-                                    contract_address,
-                                    Julia.abi,
-                                    provider.getSigner(0));
                                 // make sure correct contract
                                 console.log(parseInt(await contract.current_supply()));
 
                                 // mint new nft
-                                const txn = await contract.mintOne(address, token_uri, { value: ethers.utils.parseEther("10.0") });
+                                const txn = await contract.connect(provider.getSigner(0)).mintOne(
+                                    address, token_uri, { value: ethers.utils.parseEther("10.0") });
                                 const receipt = await txn.wait();
                                 console.log(receipt.events);
 
@@ -220,7 +244,7 @@ const JuliaDisplay =()=> {
                         id="p5wrap"
                         dispatch={dispatch}
                         sketch={sketchJulia}
-                        state={{ hash, refresh, canvas, dim }}
+                        state={{ hash, refresh}}
                     />
                 )}
             </div>

@@ -8,7 +8,7 @@ export default function (id = generate()) {
 
     function P5Wrapper({
         sketch = () => { },
-        state = {},
+        state = { },
         dispatch = () => { },
     }) {
         console.log(`::: P5Wrapper(${id}) component has been re-rendered`)
@@ -20,6 +20,14 @@ export default function (id = generate()) {
             canvas = new window.p5(sketch, sketchContainer.current)
             canvas.state = state
             canvas.dispatch = dispatch
+
+            dispatch({
+                    type: 'SET_VALUE',
+                    payload: {
+                        key: 'blobd',
+                        value: canvas.canvas,
+                    },
+                });
 
             return () => {
                 console.log(`::: P5Wrapper(${id})/useEffect.return()`)

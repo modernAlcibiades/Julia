@@ -13,7 +13,8 @@ export default {
     
     // contract
     contract_address: "0xc45c766C9D0639654590F16486C936b97eCd714D",
-    contract:undefined,
+    contract: undefined,
+    minted: '--',
     FTMSCAN_API_KEY: undefined,
     
     // Generator
@@ -22,6 +23,5 @@ export default {
     bgndColor: '#ddd',
     // playAudio: false,
     errorMessage: "",
-    successMessage: "",
-    dim:1024
+    successMessage: ""
 }

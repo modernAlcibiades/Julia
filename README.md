@@ -14,11 +14,16 @@ Once all the Julia NFTs are generated, the code will be immortalized on blockcha
 ### TODO
 - Display minted so far
 - Add information to TokenURI
+- Firebase website
+- Change contract before it is too late
+- Twitter feed to discord announcements
 - Reveal committed code transaction
 - Dashboard to show minted NFTs
 - Connect before processing
   
 ### Done
+- Fixed display issue during tab switching
+- Enabled screen adaptive display
 - Embed display in the web app
 - Test IPFS upload
 - Create NFT contract
