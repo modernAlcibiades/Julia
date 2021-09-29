@@ -9,15 +9,6 @@ export default function About() {
         minted
     } = useContext(AppStateContext);
 
-    // useEffect(async () => {
-    //     console.log("Contract", contract);
-    //     if (contract !== undefined) {
-    //         const mint = parseInt(await contract.current_supply());
-    //         console.log("Minted", mint);
-    //         //setMinted(mint);
-    //     } 
-    // }, [contract]);
-
     return (
         <>
             <div className="wrapper">

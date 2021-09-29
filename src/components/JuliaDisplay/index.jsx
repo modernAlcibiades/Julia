@@ -69,7 +69,6 @@ const JuliaDisplay =()=> {
 
     useEffect(() => {
         (async () => {
-            console.log("Provider", provider);
             // Initialize contract
             if (provider !== undefined) {
                 const cnt = new ethers.Contract(
