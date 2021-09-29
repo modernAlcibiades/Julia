@@ -15,6 +15,8 @@ Once all the Julia NFTs are generated, the code will be immortalized on blockcha
 - Display minted so far
 - Add information to TokenURI
 - Reveal committed code transaction
+- Dashboard to show minted NFTs
+- Connect before processing
   
 ### Done
 - Embed display in the web app
