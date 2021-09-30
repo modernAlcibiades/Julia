@@ -8,7 +8,7 @@ import { AppDispatchContext, AppStateContext } from '../App/AppStateProvider';
 import p5Wrapper from '../P5Wrapper';
 
 // contract
-import Julia from '../contracts/FractalArt.sol/Julia.json';
+import Julia from '../../contracts/FractalArt.sol/Julia.json';
 import { ethers } from 'ethers';
 
 const P5Wrapper = p5Wrapper(generate())
@@ -38,7 +38,7 @@ const JuliaDisplay =()=> {
             },
         });
         let _hash = '0x';
-        for (let i = 0; i < 32; i++) {
+        for (let i = 0; i < 18; i++) {
             const val = Math.floor(Math.random() * 16);
             _hash = _hash + val.toString(16);
         }
@@ -177,7 +177,7 @@ const JuliaDisplay =()=> {
                             try {
                                 // mint new nft
                                 const txn = await contract.connect(provider.getSigner(0)).mintOne(
-                                    address, token_uri, { value: ethers.utils.parseEther("10.0") });
+                                    address, hash, token_uri, { value: ethers.utils.parseEther("10.0") });
                                 const receipt = await txn.wait();
                                 console.log(receipt.events);
                                 

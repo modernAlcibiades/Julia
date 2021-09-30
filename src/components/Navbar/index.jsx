@@ -22,13 +22,13 @@ const Navbar = () => {
 
         <Bars />
         <NavMenu>
-          <NavLink to='/about' activeStyle>
+          <NavLink to='/about'>
             About
           </NavLink>
-          <NavLink to='/mint' activeStyle>
+          <NavLink to='/mint'>
             Mint NFT
           </NavLink>
-          <NavLink to='/dashboard' activeStyle>
+          <NavLink to='/dashboard'>
             My Dashboard
           </NavLink>
           {/* Second Nav */}

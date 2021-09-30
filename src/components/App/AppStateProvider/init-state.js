@@ -12,7 +12,7 @@ export default {
     metadata: undefined,
     
     // contract
-    contract_address: "0xc45c766C9D0639654590F16486C936b97eCd714D",
+    contract_address: "0x60059E9a55b52A5EEA01A37A0a78c05806d9DFD9",
     contract: undefined,
     minted: '--',
     FTMSCAN_API_KEY: undefined,
