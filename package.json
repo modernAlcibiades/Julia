@@ -1,5 +1,5 @@
 {
-  "homepage": "https://modernalcibiades.github.io/Julia/",
+  "homepage": "https://julia-nft.web.app/",
   "name": "julia-nft",
   "version": "0.0.1",
   "private": true,
@@ -19,8 +19,6 @@
   "license": "MIT",
   "main": "src/index.jsx",
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
     "clean": "rm -rf ./build",
     "build": "npm run clean && NODE_ENV=production webpack",
     "start": "nodemon --watch webpack.*.js --exec \"NODE_ENV=development webpack-dev-server\""
@@ -56,7 +54,6 @@
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.12.4",
     "eslint-plugin-react-hooks": "^1.6.0",
-    "gh-pages": "^3.2.3",
     "html-webpack-plugin": "^3.2.0",
     "mini-css-extract-plugin": "^0.7.0",
     "nodemon": "^1.18.11",
