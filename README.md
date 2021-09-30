@@ -20,8 +20,8 @@ Once all the Julia NFTs are generated, the code will be immortalized on blockcha
   
 ### Done
 (v0.3)
-- Sketch committed to blockchain
 - New contract deployed
+- Sketch committed to blockchain
 - True randomness increased, color palette and textures expanded
 - Required bytes reduced from 16 to 9
 - Sketch changed dramatically
