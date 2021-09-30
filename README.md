@@ -14,14 +14,17 @@ Once all the Julia NFTs are generated, the code will be immortalized on blockcha
 ### TODO
 - Build and add roadmap to About
 - Firebase website
-- Evaluate if contract needs to be updated
 - Fix mobile site
-- Add information to TokenURI
 - Get Pro mee6 for Twitter feed to discord announcements
-- Reveal committed code transaction hash
 - Dashboard to show minted NFTs
   
 ### Done
+(v0.3)
+- Sketch committed to blockchain
+- New contract deployed
+- True randomness increased, color palette and textures expanded
+- Required bytes reduced from 16 to 9
+- Sketch changed dramatically
 - Discord server setup
 (v0.2)
 - Added seed to TokenURI (will generate any others later)
