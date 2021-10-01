@@ -56,8 +56,9 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 .section {
     margin: 8px auto;
     padding: 8px;
+    /*
     border: 1px dashed lightgray;
-    border-radius: 4px;
+    border-radius: 4px;*/
     align-items: center;
 }
 
@@ -116,12 +117,6 @@ span {
 .info-message {
   text-align: center;
   color: black;
-}
-.message {
-  text-align: center;
-  color: black;
-  padding: 2px;
-  margin: 10 auto;
 }
 
 

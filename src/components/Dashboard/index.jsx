@@ -79,8 +79,11 @@ export default function Dashboard() {
         ));
         return (
           <>
-            <div className="wrapper">
-              <h2>Julia NFT Gallery</h2>
+            <div className="p5-wrapper">
+              <div className="info-message">
+                <h2>Julia NFT Gallery</h2>
+              </div>
+
               <div className="error-message">Connect wallet</div>
               <br />
               <div className="info-message">Total Minted : {minted} / 1000</div>

@@ -29,7 +29,7 @@ const Navbar = () => {
             Mint NFT
           </NavLink>
           <NavLink to='/dashboard'>
-            My Dashboard
+            Gallery
           </NavLink>
           {/* Second Nav */}
           {/* <NavBtnLink to='/sign-in'>Sign In</NavBtnLink> */}
