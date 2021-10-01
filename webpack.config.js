@@ -31,7 +31,7 @@ const config = {
     ],
     output: {
         path: DIST,
-        publicPath: '/Julia/',
+        publicPath: '/',
     },
     devtool: 'source-map',
     module: {
@@ -98,7 +98,7 @@ if (MODE === 'production') {
 if (MODE === 'development') {
     config.devServer = {
         historyApiFallback: true,
-        disableHostCheck: true,
+        //disableHostCheck: true,
         stats: 'errors-only',
         overlay: true,
         hotOnly: true,

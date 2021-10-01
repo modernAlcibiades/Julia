@@ -26,6 +26,7 @@
   "dependencies": {
     "@hot-loader/react-dom": "^16.8.6",
     "@popperjs/core": "^2.10.1",
+    "axios": "^0.22.0",
     "bootstrap": "^5.1.1",
     "ethers": "^5.4.7",
     "nft.storage": "^3.2.2",
