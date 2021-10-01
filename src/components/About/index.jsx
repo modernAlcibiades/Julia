@@ -31,7 +31,7 @@ export default function About() {
                     <li>You will see a success message in green saying 'Successful Mint'</li>
                     <li>If there's an error, you will see the details in red. Follow those instructions.</li>
                     </ul>
-                <p>Have fun!!</p>
+                <p>If you want to discover the true joy of creation, I recommend editing the Seed value directly until you find what you are looking for. Have fun!!</p>
                 <br />
                 <h2>About me</h2>
                 <p>Hello, I am Cthae. I am an independent artist and developer. The more I learn, the more I want to create something awesome. Julia is one such attempt. You can checkout my other projects as well </p>

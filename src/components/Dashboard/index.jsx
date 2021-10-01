@@ -49,7 +49,6 @@ export default function Dashboard() {
                     image: url});
                 }
                 await Promise.all(metadata);
-                //console.log(metadata);
                 setTokens(metadata);
             } else {
                 setTokens([]);
