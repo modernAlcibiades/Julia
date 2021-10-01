@@ -119,6 +119,12 @@ span {
   color: black;
 }
 
+.card {
+  padding: 8px;
+  border: 1px dashed lightgray;
+  margin: auto;
+  text-align: left;
+}
 
 .btn {
   display: inline-block;
