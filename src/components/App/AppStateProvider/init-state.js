@@ -1,5 +1,5 @@
 import { NFTStorage } from 'nft.storage';
-import { apikey } from "../../../config.js";
+import { apikey, ftmscan_key } from "../../../config.js";
 export default {
     // wallet
     address: undefined,
@@ -15,7 +15,7 @@ export default {
     contract_address: "0x60059E9a55b52A5EEA01A37A0a78c05806d9DFD9",
     contract: undefined,
     minted: '--',
-    FTMSCAN_API_KEY: undefined,
+    FTMSCAN_API_KEY: ftmscan_key,
     
     // Generator
     refresh: true,

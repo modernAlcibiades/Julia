@@ -6,11 +6,8 @@ import TokenDisplay from "../TokenDisplay";
 const axios = require('axios');
 export default function Dashboard() {
     const dispatch = useContext(AppDispatchContext);
-    const {
-        address,
-        contract_address,
-        contract
-    } = useContext(AppStateContext)
+    const { address, contract_address, contract, FTMSCAN_API_KEY } =
+      useContext(AppStateContext);
 
     const [tokens, setTokens] = useState([]);
     const [filtered, setFiltered] = useState([]);
@@ -21,8 +18,8 @@ export default function Dashboard() {
         console.log(contract);
             if (contract !== undefined) {
                 const request = {
-                    method: 'get',
-                    url: `${FTMSCAN_API}?module=account&action=tokennfttx&contractaddress=${contract_address}&tag=latest`,
+                  method: "get",
+                  url: `${FTMSCAN_API}?module=account&action=tokennfttx&contractaddress=${contract_address}&tag=latest&apikey=${FTMSCAN_API_KEY}`,
                 };
                 console.log(request);
                 let response;
@@ -32,43 +29,43 @@ export default function Dashboard() {
                 if (response.data.message.startsWith('OK')) {
                     // If tokens returned, get their URI
                     //console.log(Object.keys(response.data.result));
-                    const ids = response.data.result.map(a => a.tokenID);
+                    const ids = response.data.result;
                     let metadata = [];
                     for (let i = 0; i < ids.length; i++){
                         metadata.push({
-                            tokenId: ids[i],
-                            tokenURI: await contract.tokenURI(ids[i])
+                            tokenId: ids[i].tokenID,
+                            owner: ids[i].to,
+                            tokenURI: await contract.tokenURI(ids[i].tokenID)
                         });
                     }
                     await Promise.all(metadata);
                     console.log(metadata);
-
-                    // dispatch({
-                    //     type: 'SET_VALUE',
-                    //     payload: {
-                    //         key: 'filtered',
-                    //         value: metadata
-                    //     }
-                    // }
-                    // )
-                    setFiltered(metadata);
-                    //setTokens(metadata);
+                    setTokens(metadata);
                 } else {
                     setTokens([]);
                 }            
             }
     }
+
     useEffect(() => {
         get_nfts();
     }, [contract]);
 
-    console.log(filtered)
-    const listItems = filtered.map((token) => (
-      //<label>{token.tokenId} : {token.tokenURI} </label>));
-      //<div>{listItems}</div>
-      <TokenDisplay tokenId={token.tokenId} tokenURI={token.tokenURI} />));
+    useEffect(() => {
+        // filter tokens to find only tokens that belong to this address
+        const filtered = tokens.filter((token) => {
+            if (token.owner == address) {
+                return true;
+            } else {
+                return false;
+            }
+        });
+    }, [address]);
     
     if (address === undefined) {
+        const listItems = tokens.map((token) => (
+            <TokenDisplay t= {token} />
+        ));
         return (
             <>
                 <div className="wrapper">
@@ -77,12 +74,17 @@ export default function Dashboard() {
                         <label>Connect wallet</label>
                     </div>
                     <label>Tokens</label>
-                    <div>{listItems}</div>
-                   
+                    <div>{listItems}</div>  
                 </div>
             </>
         );
     } else {
+        const listItems = filtered.map((token) => (
+                  <TokenDisplay
+                    tokenId={token.tokenId}
+                    tokenURI={token.tokenURI}
+                  />
+                ));
         return (
           <>
             <div className="wrapper">
