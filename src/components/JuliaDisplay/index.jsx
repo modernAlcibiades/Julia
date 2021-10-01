@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 
 import { generate } from 'shortid';
 
@@ -43,6 +43,7 @@ const JuliaDisplay =()=> {
             _hash = _hash + val.toString(16);
         }
         console.log("Seed", _hash);
+        setinp(_hash);
         
         dispatch({
             type: 'SET_VALUE',
@@ -53,6 +54,7 @@ const JuliaDisplay =()=> {
         });
     }
 
+    // Setup function
     useEffect(() => {
         // Clear Canvas
         dispatch({
@@ -66,6 +68,8 @@ const JuliaDisplay =()=> {
         // Redraw on canvas
         redraw();
     }, []);
+
+    const [inp, setinp] = useState(hash);
 
     useEffect(() => {
         (async () => {
@@ -105,6 +109,30 @@ const JuliaDisplay =()=> {
             }
         })();
     }, [provider]);
+
+    useEffect(() => {
+        if (
+        inp.length >= 20 &&
+        inp.startsWith("0x")
+        ) {
+          dispatch({
+            type: "SET_VALUE",
+            payload: {
+              key: "hash",
+              value: inp,
+            },
+          });
+          // Needs redrawing
+          dispatch({
+            type: "SET_VALUE",
+            payload: {
+              key: "refresh",
+              value: true,
+            },
+          });
+        }
+        }, [inp]);
+
 
     return (
         <div className="mint-wrapper">
@@ -242,7 +270,13 @@ const JuliaDisplay =()=> {
             </div>
             <br />
             <div className="info-message">
-                <h5>Seed : {hash}</h5>
+                <h5>Seed : <input value={inp} onChange={e => {
+                    const val = e.target.value
+                    // Only uint256 allowed
+                    if (ethers.utils.isHexString(val) && val.length <67) {
+                      setinp(val);
+                    }
+                }}/></h5>
             </div>
             <div className="section section-content">
                 {(
