@@ -93,7 +93,6 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
   width: 300px;
 }
 
-
 .inputs-wrapper {
     text-align: center;
     margin-top: 2em;
@@ -118,13 +117,36 @@ span {
   text-align: center;
   color: black;
 }
+.message {
+  text-align: center;
+  color: black;
+  padding: 2px;
+  margin: 10 auto;
+}
+
+
+.card-wrapper{
+  display: flex;
+  justify-content: space-between;
+}
 
 .card {
-  padding: 8px;
+  margin: 4px auto;
   border: 1px dashed lightgray;
-  margin: auto;
-  text-align: left;
+  border-radius: 4px;
+  align-items: center;
+  max-width: 300px;
+  cursor: pointer;
 }
+
+.card-image {
+  margin: 2 auto;
+  max-width: 280px;
+}
+.card-container {
+  padding: 2px 16px;
+}
+
 
 .btn {
   display: inline-block;
