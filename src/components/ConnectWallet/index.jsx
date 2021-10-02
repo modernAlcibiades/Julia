@@ -22,6 +22,7 @@ export default function ConnectWallet() {
   };
 
   const connect_provider = (chainId) => {
+    //console.log(ethereum.isConnected());
     if (chainId === "0xfa") {
       const prov = new ethers.providers.Web3Provider(ethereum);
       dispatch({
@@ -51,31 +52,44 @@ export default function ConnectWallet() {
     if (address !== undefined) {
       // If not returned yet, clear info
       clear_connect();
-    } else if (provider !== undefined) {
-      // Connect wallet
+    } else {
       try {
-        const [signer_address] = await ethereum.request({
-          method: "eth_requestAccounts",
-        });
+        if (provider === undefined) {
+          // Connect provider
+          connect_provider(ethereum.chainId);
+        }
 
-        dispatch({
-          type: "SET_VALUE",
-          payload: {
-            key: "address",
-            value: signer_address,
-          },
-        });
-        setButtonText(signer_address.substring(0, 22) + "...");
-        dispatch({
-          type: "SET_SUCCESS",
-          payload: {
-            value: "",
-          },
-        });
-        return;
+        if (provider !== undefined) {
+          const [signer_address] = await ethereum.request({
+            method: "eth_requestAccounts",
+          });
+          setButtonText(signer_address.substring(0, 22) + "...");
+
+          dispatch({
+            type: "SET_VALUE",
+            payload: {
+              key: "address",
+              value: signer_address,
+            },
+          });
+          dispatch({
+            type: "SET_SUCCESS",
+            payload: {
+              value: "",
+            },
+          });
+        } else {
+          // wrong chain, connect to fantom
+          console.log("wrong Chain");
+          dispatch({
+            type: "SET_ERROR",
+            payload: {
+              value: "Connect to Fantom Opera.",
+            },
+          });
+        }
       } catch (e) {
-        console.log(e);
-        try {
+        try{
           dispatch({
             type: "SET_ERROR",
             payload: { value: e.data.message },
@@ -87,14 +101,6 @@ export default function ConnectWallet() {
           });
         }
       }
-    } else {
-      console.log("Wrong network! Connect to fantom");
-      dispatch({
-        type: "SET_ERROR",
-        payload: {
-          value: "Connect to Fantom Network on Metamask!!!",
-        },
-      });
     }
   };
 
@@ -119,7 +125,7 @@ export default function ConnectWallet() {
     // on chain change
     ethereum.on("chainChanged", (chainId) => {
       console.log("Chain Changed", chainId);
-      connect_provider(connectInfo.chainId);
+      connect_provider(chainId);
     });
   }, [ethereum]);
 
