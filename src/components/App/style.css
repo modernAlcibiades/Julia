@@ -121,8 +121,9 @@ span {
 
 
 .card-wrapper{
-  display: flex;
-  justify-content: space-around;
+  margin: 8px auto;
+  padding: 12px;
+  align-items: left;
 }
 
 .card {
@@ -138,6 +139,7 @@ span {
   margin: 2 auto;
   max-width: 280px;
 }
+
 .card-container {
   padding: 2px 16px;
 }

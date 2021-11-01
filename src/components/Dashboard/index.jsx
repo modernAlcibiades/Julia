@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 
 import { AppDispatchContext, AppStateContext } from "../App/AppStateProvider";
 import TokenDisplay from "../TokenDisplay";
+import Grid from '@material-ui/core/Grid';
 
 const axios = require("axios");
 export default function Dashboard() {
@@ -16,8 +17,33 @@ export default function Dashboard() {
   const [tokens, setTokens] = useState([]);
   const [filtered, setFiltered] = useState([]);
   const FTMSCAN_API = "https://api.ftmscan.com/api";
-  // Initialize
 
+  // // Overlay params
+  // const [isOpen, toggleOpen] = useState(false);
+  // const [displayImage, toggleImage] = useState(0);
+
+  // const handleShowDialog = (events) => {
+  //   toggleOpen(!isOpen);
+  //   console.log("toggle");
+  // };
+
+  // const modal = (
+  //   <dialog
+  //     className="dialog"
+  //     style={{ position: "absolute" }}
+  //     open={isOpen}
+  //     onClick={handleShowDialog}
+  //   >
+  //     <ModalImage
+  //       className="display-image"
+  //       src={displayImage}
+  //       onClick={handleShowDialog}
+  //       alt="no image"
+  //     />
+  //   </dialog>
+  // );
+
+  // Initialize NFTs
   const get_nfts = async () => {
     const request = {
       method: "get",
@@ -78,10 +104,10 @@ export default function Dashboard() {
   }, [address]);
 
   if (address === undefined) {
-    const listItems = tokens.map((token) => <TokenDisplay t={token} />);
+    const listItems = tokens.map((token) => <TokenDisplay t={token}/>);
     return (
       <>
-        <div className="p5-wrapper">
+        <div className="card-wrapper">
           <div className="info-message">
             <h2>Julia NFT Gallery</h2>
           </div>
@@ -90,12 +116,23 @@ export default function Dashboard() {
           <br />
           <div className="info-message">Total Minted : {minted} / 1000</div>
           <br />
-          <div className="card-wrapper">{listItems}</div>
+          <Grid
+            className="section"
+            container
+            direction="row"
+            justify="flex-start"
+            alignItems="flex-start"
+            spacing={5}
+          >
+            {listItems}
+          </Grid>
         </div>
       </>
     );
   } else {
-    const listItems = filtered.map((token) => <TokenDisplay t={token} />);
+    const listItems = filtered.map((token) => (
+      <TokenDisplay t={token} />
+    ));
     return (
       <>
         <div className="p5wrapper">
@@ -104,7 +141,16 @@ export default function Dashboard() {
           <br />
           <div className="info-message">Owned : {filtered.length}</div>
           <br />
-          <div className="card-wrapper">{listItems}</div>
+          <Grid
+            className="section"
+            container
+            direction="row"
+            justify="flex-start"
+            alignItems="flex-start"
+            spacing={10}
+          >
+            {listItems}
+          </Grid>
         </div>
       </>
     );

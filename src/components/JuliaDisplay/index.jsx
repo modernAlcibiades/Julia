@@ -143,7 +143,7 @@ const JuliaDisplay =()=> {
                     onClick={() => {
                         redraw();
                     } }>
-                    Generate New
+                    Generate
                 </button>
                 <span></span>
                 <button
@@ -258,7 +258,7 @@ const JuliaDisplay =()=> {
                     }
                         
                     }>
-                    Mint NFT
+                    Mint
                 </button>
                 <br />          
             </div>
