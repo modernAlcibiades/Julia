@@ -22,7 +22,10 @@ export default {
     hash: '0x8c4a76cf4a66c6ab0d6ce34a49a6a482',
     bgndColor: '#ddd',
 
-    // Token Display
+    // Audio
+    audio_hash: '0x8c4a76cf4a66c6ab0d6ce34a49a6a482',
+    audio_reset: true,
+    audio_pause: true,
 
     // Message
     errorMessage: "",

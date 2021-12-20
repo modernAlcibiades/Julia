@@ -28,6 +28,9 @@ const Navbar = () => {
           <NavLink to='/mint'>
             Mint NFT
           </NavLink>
+                    <NavLink to='/soundbox'>
+            Soundbox
+          </NavLink>
           <NavLink to='/dashboard'>
             Gallery
           </NavLink>
