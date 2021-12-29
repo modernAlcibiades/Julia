@@ -85,16 +85,31 @@ export default function Dashboard() {
     }
     const final = await Promise.all(metadata);
     setTokens(final);
+    dispatch({
+      type: "SET_VALUE",
+      payload: {
+        key: "minted",
+        value: final.length,
+      },
+    });
   };
 
   useEffect(() => {
     get_nfts();
+    const filter = tokens.filter((token) => {
+      if (token.owner === address) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+    setFiltered(filter);
   }, [contract]);
 
   useEffect(() => {
     // filter tokens to find only tokens that belong to this address
     const filter = tokens.filter((token) => {
-      if (token.owner == address) {
+      if (token.owner === address) {
         return true;
       } else {
         return false;
@@ -103,43 +118,54 @@ export default function Dashboard() {
     setFiltered(filter);
   }, [address]);
 
-  if (address === undefined) {
-    const listItems = tokens.map((token) => <TokenDisplay t={token}/>);
-    return (
-      <>
-        <div className="card-wrapper">
-          <div className="info-message">
-            <h2>Julia NFT Gallery</h2>
-          </div>
+  let listItems, display_message;
 
-          <div className="error-message">Connect wallet</div>
-          <br />
-          <div className="info-message">Total Minted : {minted} / 1000</div>
-          <br />
-          <Grid
-            className="section"
-            container
-            direction="row"
-            justify="flex-start"
-            alignItems="flex-start"
-            spacing={5}
-          >
-            {listItems}
-          </Grid>
-        </div>
-      </>
-    );
+  if (address === undefined) {
+    listItems = tokens.map((token) => <TokenDisplay t={token} />);
+    display_message = `Total Minted : ${minted}/1000`;
+
   } else {
-    const listItems = filtered.map((token) => (
+    listItems = filtered.map((token) => (
       <TokenDisplay t={token} />
     ));
-    return (
-      <>
-        <div className="p5wrapper">
-          <h2>Julia NFT Gallery</h2>
-          <div className="info-message">Address : {address}</div>
+    display_message = `Minted : ${filtered.length}`;
+  }
+
+  // Links
+  const openInNewTab = (url) => {
+    const newWindow = window.open(url, "_blank", "noopener,noreferrer");
+    if (newWindow) newWindow.opener = null;
+  };
+
+  return (
+    <>
+      <div className="mint-wrapper">
+        <div className="inputs-wrapper">
+          <button
+            className="btn btn-warning"
+            type="button"
+            onClick={() =>
+              openInNewTab(
+                "https://artion.io/explore/0x60059e9a55b52a5eea01a37a0a78c05806d9dfd9/3"
+              )
+            }
+          >
+            View on Artion
+          </button>
+          <span></span>
+          <button
+            type="button"
+            className="btn btn-warning"
+            onClick={() =>
+              openInNewTab(
+                "https://paintswap.finance/marketplace/collections/0x60059e9a55b52a5eea01a37a0a78c05806d9dfd9"
+              )
+            }
+          >
+            View on Paintswap
+          </button>
           <br />
-          <div className="info-message">Owned : {filtered.length}</div>
+          <div className="info-message">{display_message}</div>
           <br />
           <Grid
             className="section"
@@ -152,7 +178,7 @@ export default function Dashboard() {
             {listItems}
           </Grid>
         </div>
-      </>
-    );
-  }
+      </div>
+    </>
+  );
 }

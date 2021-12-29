@@ -31,7 +31,7 @@ const SoundboxDisplay =()=> {
             const val = Math.floor(Math.random() * 16);
             _hash = _hash + val.toString(16);
         }
-        console.log("Seed", _hash);
+        //console.log("Seed", _hash);
         setinp(_hash);
         
         dispatch({
@@ -46,6 +46,13 @@ const SoundboxDisplay =()=> {
             payload: {
             key: "audio_hash",
             value: _hash,
+            },
+        });
+        dispatch({
+            type: "SET_VALUE",
+            payload: {
+            key: "audio_pause",
+            value: false,
             },
         });
     }
@@ -84,7 +91,7 @@ const SoundboxDisplay =()=> {
                     type="button"
                     className="btn btn-warning"
                     onClick={async () => {
-                        console.log(audio_pause);
+                        //console.log(audio_pause);
                         dispatch({
                             type: "SET_VALUE",
                             payload: {
@@ -96,7 +103,7 @@ const SoundboxDisplay =()=> {
                     }>
                     Play/Pause
                 </button>
-                                <span></span>
+                <span></span>
                 <button
                     type="button"
                     className="btn btn-warning"

@@ -12,9 +12,14 @@
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
-    color: #212529;
+    color: #e6e6e6;
     text-align: left;
-    background-color: #fff;
+    background-color: #444;
+}
+
+.app-content-dark {
+  color: #e6e6e6;
+  background-color: #444;
 }
 
 *,
@@ -27,7 +32,7 @@ html {
   font-family: sans-serif;
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: rgba(200, 200, 200, 255);
 }
 
 article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
@@ -38,9 +43,15 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
   font-family: sans-serif;
   text-align: left;
   margin-left: 24px;
-  width:10%;
-
+  width:50px;
 }
+
+.nav-logo {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+}
+
 
 .title {
     font-family: sans-serif;
@@ -116,7 +127,9 @@ span {
 }
 .info-message {
   text-align: center;
-  color: black;
+  color: white;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 
@@ -142,6 +155,19 @@ span {
 
 .card-container {
   padding: 2px 16px;
+}
+
+
+a {
+  color: #ffc107;
+}
+a:visited {
+  color: #ccc101;
+}
+a:hover,
+a:active,
+a:focus {
+  color: #c33;
 }
 
 

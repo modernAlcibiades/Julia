@@ -49,6 +49,11 @@ export const NavMenu = styled.div`
     display: none;
   }
 `;
+export const NavLogo = styled.div`
+  max-width: 90%;
+  max-height: 90%;
+  align-items: center;
+`;
 
 export const NavBtn = styled.nav`
   display: flex;

@@ -29,6 +29,17 @@ export default function About() {
             string. You can use a 'Seed` upto 64 digits long, but only first 18
             digits are used for generation.
           </p>
+          <p>
+            The project has been verified on both{" "}
+            <a href="https://artion.io/explore/0x60059e9a55b52a5eea01a37a0a78c05806d9dfd9/3">
+              Artion
+            </a>{" "}
+            and{" "}
+            <a href="https://paintswap.finance/marketplace/collections/0x60059e9a55b52a5eea01a37a0a78c05806d9dfd9">
+              Paintswap
+            </a>
+            .
+          </p>
           <p>Details are as follows:</p>
           <ul>
             <li>
@@ -41,10 +52,6 @@ export default function About() {
             <li>Price : 10 FTM</li>
             <li>Max mints per address : 3</li>
           </ul>
-            <a href="https://discord.gg/BvkwG2Bd">Discord</a>
-            <span/>
-            <a href="https://twitter.com/FractalWild">Twitter</a>
-          <br />
           <h2>How to mint</h2>
           <ul>
             <li>
@@ -57,7 +64,8 @@ export default function About() {
               <b>Click 'Mint'</b>
             </li>
             <li>
-              You will see a success message in green saying 'Successful Mint'
+              Wait a bit for ipfs upload and transaction processing. You will
+              see a success message in green saying 'Successful Mint'
             </li>
             <li>
               If there's an error, you will see the details in red. Follow those
@@ -69,7 +77,6 @@ export default function About() {
             editing the Seed value directly until you find what you are looking
             for. Have fun!!
           </p>
-          <br />
           <h2>About me</h2>
           <p>
             Hello, I am Cthae. I am an independent artist and developer. The
@@ -89,6 +96,37 @@ export default function About() {
               </a>
             </li>
           </ul>
+          <div>
+            <h2>Links</h2>
+            <a href="https://artion.io/explore/0x60059e9a55b52a5eea01a37a0a78c05806d9dfd9/3">
+              <img id="artion" className="logo" src="static/logos/artion.svg" />
+            </a>
+            <span />
+            <a href="https://paintswap.finance/marketplace/collections/0x60059e9a55b52a5eea01a37a0a78c05806d9dfd9">
+              <img
+                id="paintswap"
+                className="logo"
+                src="static/logos/paintswap.png"
+              />
+            </a>
+            <span />
+            <a href="https://twitter.com/FractalWild">
+              <img
+                id="twitter"
+                className="logo"
+                src="static/logos/twitter.png"
+              />
+            </a>
+            <span />
+            <a href="https://discord.gg/BvkwG2Bd">
+              <img
+                id="discord"
+                className="logo"
+                src="static/logos/discord.png"
+              />
+            </a>
+          </div>
+          <br />
         </div>
       </>
     );

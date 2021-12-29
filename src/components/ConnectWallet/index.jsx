@@ -22,8 +22,8 @@ export default function ConnectWallet() {
   };
 
   const connect_provider = (chainId) => {
-    //console.log(ethereum.isConnected());
-    if (chainId === "0xfa") {
+    console.log(chainId);
+    if (chainId == "0xfa") {
       const prov = new ethers.providers.Web3Provider(ethereum);
       dispatch({
         type: "SET_VALUE",
@@ -37,7 +37,7 @@ export default function ConnectWallet() {
         type: "SET_ERROR",
         payload: "",
       });
-    } else {
+    } /*else {
       dispatch({
         type: "SET_VALUE",
         payload: {
@@ -45,7 +45,7 @@ export default function ConnectWallet() {
           value: undefined,
         },
       });
-    }
+    }*/
   }
 
   const toggle_connect = async () => {
